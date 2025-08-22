@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://c64pu5e82phcb"]
+
+[ext_resource type="Script" uid="uid://c72ksxwuhmu7y" path="res://scripts/TowerPad.gd" id="1"]
+[ext_resource type="Script" uid="uid://bn3vc2c3011ys" path="res://scripts/BuildTile.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://b8delaiaq4f34" path="res://assets/kenney/tower-round-base.glb" id="2_undv0"]
+[ext_resource type="PackedScene" uid="uid://7lu16f8q0iog" path="res://assets/kenney/tile.glb" id="3_vwqad"]
+
+[sub_resource type="BoxShape3D" id="4"]
+size = Vector3(4, 0.1, 4)
+
+[node name="TowerPad" type="Node3D"]
+script = ExtResource("1")
+
+[node name="Visual" type="MeshInstance3D" parent="."]
+
+[node name="tower-round-base2" parent="Visual" instance=ExtResource("2_undv0")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0.815, 0)
+
+[node name="tile2" parent="Visual" instance=ExtResource("3_vwqad")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("4")
+
+[node name="BuildArea" type="Area3D" parent="."]
+script = ExtResource("2")
+
+[node name="BuildCollider" type="CollisionShape3D" parent="BuildArea"]
+shape = SubResource("4")

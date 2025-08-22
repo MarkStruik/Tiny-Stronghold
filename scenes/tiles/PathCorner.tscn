@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwscyhf0wy7nh"]
+
+[ext_resource type="PackedScene" uid="uid://drrf75te7o5i3" path="res://assets/kenney/tile-corner-round.glb" id="1_eya1k"]
+
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(4, 0.25, 4)
+
+[node name="PathCorner" type="Node3D"]
+
+[node name="Visual" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+
+[node name="tile-corner-round2" parent="Visual" instance=ExtResource("1_eya1k")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+shape = SubResource("2")

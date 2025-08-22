@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bug56bo1gaxcm"]
+[gd_scene load_steps=6 format=3 uid="uid://bug56bo1gaxcm"]
 
 [ext_resource type="Texture2D" uid="uid://ce8af05xu4emv" path="res://icon.svg" id="1_3364s"]
+[ext_resource type="PackedScene" uid="uid://b3w1i65bayb68" path="res://scenes/levels/Level1.tscn" id="2_ij12d"]
+
+[sub_resource type="Environment" id="Environment_ij12d"]
+background_energy_multiplier = 1.75
+ambient_light_color = Color(0.0925514, 0.397095, 0.377813, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_ij12d"]
+size = Vector2(2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xq4ua"]
 transparency = 1
@@ -10,12 +16,16 @@ albedo_texture = ExtResource("1_3364s")
 
 [node name="Main" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ij12d")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.99999, -0.00398513, 0.00190183, 0.000488688, 0.527934, 0.849286, -0.00438855, -0.849276, 0.52793, 4.59845, 11.647, 12.3445)
+fov = 61.875
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.99904, 0, 0, 0, 0.0127982, 0.998958, 0, -0.998958, 0.0127982, 4.03648, 1.47407, 0.124943)
 mesh = SubResource("QuadMesh_ij12d")
 surface_material_override/0 = SubResource("StandardMaterial3D_xq4ua")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.799844)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.555672, -0.207412, -0.805114, 0.581595, 0.788977, 0.19815, 0.594118, -0.578356, 0.559042, 0, 0.846451, 0.0018332)
+[node name="Level2" parent="." instance=ExtResource("2_ij12d")]

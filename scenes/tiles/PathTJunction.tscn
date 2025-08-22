@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg0ty0bg5txx3"]
+
+[ext_resource type="PackedScene" uid="uid://cl6agfa67tml6" path="res://assets/kenney/tile-split.glb" id="1_ijkma"]
+
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(4, 0.25, 4)
+
+[node name="PathTJunction" type="Node3D"]
+
+[node name="Visual" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+
+[node name="tile-split2" parent="Visual" instance=ExtResource("1_ijkma")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+shape = SubResource("2")

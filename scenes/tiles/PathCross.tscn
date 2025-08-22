@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://67f2v150fmnx"]
+
+[ext_resource type="PackedScene" uid="uid://ducvtbkgpb4we" path="res://assets/kenney/tile-crossing.glb" id="1_tvyg1"]
+
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(4, 0.25, 4)
+
+[node name="PathCross" type="Node3D"]
+
+[node name="Visual" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+
+[node name="tile-crossing2" parent="Visual" instance=ExtResource("1_tvyg1")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+shape = SubResource("2")

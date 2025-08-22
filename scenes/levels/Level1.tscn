@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3w1i65bayb68"]
+
+[ext_resource type="PackedScene" uid="uid://bpflhk14kxlp6" path="res://scenes/tiles/PathStraight.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://cwscyhf0wy7nh" path="res://scenes/tiles/PathCorner.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cg0ty0bg5txx3" path="res://scenes/tiles/PathTJunction.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://c64pu5e82phcb" path="res://scenes/tiles/TowerPad.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://b8igse1h1n82" path="res://scenes/props/TreeCluster.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bhqtjjs68116c" path="res://scenes/props/RockCluster.tscn" id="6_e5vnl"]
+
+[node name="Level2" type="Node3D"]
+
+[node name="Pads" type="Node3D" parent="."]
+
+[node name="Pads#Pad1" parent="Pads" instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="Pads#Pad2" parent="Pads" instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="Roads" type="Node3D" parent="."]
+
+[node name="S1" parent="Roads" instance=ExtResource("1")]
+
+[node name="C1" parent="Roads" instance=ExtResource("2")]
+transform = Transform3D(0.0016814, -0.00545328, 0.999984, 0.00649875, 0.999964, 0.00544224, -0.999977, 0.0064895, 0.00171678, 0, 0, 4)
+
+[node name="S2" parent="Roads" instance=ExtResource("1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 0, 4)
+
+[node name="TJ" parent="Roads" instance=ExtResource("3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
+
+[node name="PathStraight" parent="Roads" instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+
+[node name="PathStraight2" parent="Roads" instance=ExtResource("1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0, 4)
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="TreeCluster" parent="Props" instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
+
+[node name="RockCluster" parent="Props" instance=ExtResource("6_e5vnl")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
+
+[node name="TreeCluster2" parent="Props" instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+
+[node name="RockCluster2" parent="Props" instance=ExtResource("6_e5vnl")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12, 0, 8)

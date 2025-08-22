@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8igse1h1n82"]
+
+[ext_resource type="PackedScene" uid="uid://babr3njy0e8pe" path="res://assets/kenney/tile-tree.glb" id="1_5br57"]
+
+[sub_resource type="BoxMesh" id="1"]
+size = Vector3(0.6, 2, 0.6)
+
+[sub_resource type="BoxMesh" id="2"]
+size = Vector3(0.7, 2.4, 0.7)
+
+[sub_resource type="BoxMesh" id="3"]
+size = Vector3(0.5, 1.6, 0.5)
+
+[node name="TreeCluster" type="Node3D"]
+
+[node name="Prop1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, 0.3)
+visible = false
+mesh = SubResource("1")
+
+[node name="Prop2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 1.2, -0.4)
+visible = false
+mesh = SubResource("2")
+
+[node name="Prop3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.8, 0.7)
+visible = false
+mesh = SubResource("3")
+
+[node name="tile-tree2" parent="." instance=ExtResource("1_5br57")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
