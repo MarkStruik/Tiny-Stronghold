@@ -1,0 +1,67 @@
+name: Export Web & Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+env:
+  GODOT_VERSION: "4.4.1" # <-- set your exact Godot 4.x version here
+
+jobs:
+  export-web:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Install Godot headless + export templates (uses a community setup action)
+      - name: Setup Godot
+        uses: firebelley/setup-godot@v1
+        with:
+          version: ${{ env.GODOT_VERSION }}
+          use-dotnet: false
+          include-templates: true
+          use-headless: true
+
+      # Optional: cache Godot editor data to speed up consecutive builds
+      - name: Cache Godot EditorData
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/godot
+          key: godot-${{ env.GODOT_VERSION }}
+
+      - name: Make export folder
+        run: mkdir -p build/web
+
+      - name: Export HTML5 (Web)
+        run: |
+          godot --version
+          godot --headless --verbose --export-release "Web" "build/web/index.html"
+
+      # Upload the static site as a Pages artifact
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/web
+
+  deploy:
+    needs: export-web
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
