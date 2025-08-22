@@ -29,6 +29,9 @@ jobs:
       - name: Install tools
         run: sudo apt-get update && sudo apt-get install -y unzip curl
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
       - name: Cache export templates
         uses: actions/cache@v4
         with:
