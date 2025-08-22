@@ -15,7 +15,8 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  GODOT_VERSION: "4.4.1" # <-- set your exact Godot 4.x version here
+  GODOT_VERSION: "4.4.1"         # ← set your exact version (e.g., 4.3)
+  GODOT_TAG: "4.4.1-stable"      # ← for the release file names
 
 jobs:
   export-web:
@@ -25,31 +26,42 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Install Godot headless + export templates (uses a community setup action)
-      - name: Setup Godot
-        uses: firebelley/setup-godot@v1
-        with:
-          version: ${{ env.GODOT_VERSION }}
-          use-dotnet: false
-          include-templates: true
-          use-headless: true
+      - name: Install tools
+        run: sudo apt-get update && sudo apt-get install -y unzip
 
-      # Optional: cache Godot editor data to speed up consecutive builds
-      - name: Cache Godot EditorData
+      - name: Cache export templates
         uses: actions/cache@v4
         with:
-          path: ~/.local/share/godot
-          key: godot-${{ env.GODOT_VERSION }}
+          path: ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
+          key: godot-templates-${{ env.GODOT_VERSION }}
 
-      - name: Make export folder
+      - name: Download Godot editor (Linux x86_64)
+        run: |
+          curl -L -o godot.zip \
+            https://github.com/godotengine/godot/releases/download/${{ env.GODOT_TAG }}/Godot_v${{ env.GODOT_TAG }}_linux.x86_64.zip
+          unzip -q godot.zip
+          mv Godot_v${{ env.GODOT_TAG }}_linux.x86_64 godot
+          chmod +x godot
+
+      - name: Download export templates (if not cached)
+        run: |
+          TEMPLATES_DIR="$HOME/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable"
+          if [ ! -d "$TEMPLATES_DIR" ]; then
+            mkdir -p "$TEMPLATES_DIR"
+            curl -L -o templates.tpz \
+              https://github.com/godotengine/godot/releases/download/${{ env.GODOT_TAG }}/Godot_v${{ env.GODOT_TAG }}_export_templates.tpz
+            unzip -q templates.tpz -d "$TEMPLATES_DIR"
+          fi
+          ls -la "$TEMPLATES_DIR"
+
+      - name: Ensure export folder
         run: mkdir -p build/web
 
       - name: Export HTML5 (Web)
         run: |
-          godot --version
-          godot --headless --verbose --export-release "Web" "build/web/index.html"
+          ./godot --version
+          ./godot --headless --verbose --export-release "Web" "build/web/index.html"
 
-      # Upload the static site as a Pages artifact
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
