@@ -24,7 +24,8 @@ environment = SubResource("Environment_ij12d")
 transform = Transform3D(1, 0, 0, 0, 0.546146, 0.83769, 0, -0.83769, 0.546146, -5.19829, 10.6231, 5.71216)
 shadow_enabled = true
 shadow_bias = 0.15
-shadow_normal_bias = 3.0
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 80.0
 
 [node name="GameIcon" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.99904, 0, 0, 0, 0.0127982, 0.998958, 0, -0.998958, 0.0127982, 4.03648, 1.47407, 0.124943)
@@ -32,6 +33,7 @@ mesh = SubResource("QuadMesh_ij12d")
 surface_material_override/0 = SubResource("StandardMaterial3D_xq4ua")
 
 [node name="Level2" parent="." instance=ExtResource("2_ij12d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.242676, -0.0861857, 0.0343623)
 
 [node name="CameraRig" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.32434, 0, 3.25359)
@@ -41,5 +43,3 @@ script = ExtResource("3_xq4ua")
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig/Pivot"]
 fov = 60.0
-near = 0.1
-far = 250.0
