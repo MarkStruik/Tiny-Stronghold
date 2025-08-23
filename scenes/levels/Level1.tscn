@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b8igse1h1n82" path="res://scenes/props/TreeCluster.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://bhqtjjs68116c" path="res://scenes/props/RockCluster.tscn" id="6_e5vnl"]
 
-[node name="Level2" type="Node3D"]
+[node name="Level1" type="Node3D"]
 
 [node name="Pads" type="Node3D" parent="."]
 

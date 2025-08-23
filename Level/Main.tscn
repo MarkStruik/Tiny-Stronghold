@@ -1,11 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bug56bo1gaxcm"]
+[gd_scene load_steps=7 format=3 uid="uid://bug56bo1gaxcm"]
 
 [ext_resource type="Texture2D" uid="uid://ce8af05xu4emv" path="res://icon.svg" id="1_3364s"]
 [ext_resource type="PackedScene" uid="uid://b3w1i65bayb68" path="res://scenes/levels/Level1.tscn" id="2_ij12d"]
+[ext_resource type="Script" uid="uid://cf0riixnrb0g0" path="res://scripts/camera_rig.gd" id="3_xq4ua"]
 
 [sub_resource type="Environment" id="Environment_ij12d"]
 background_energy_multiplier = 1.75
 ambient_light_color = Color(0.0925514, 0.397095, 0.377813, 1)
+fog_enabled = true
+volumetric_fog_enabled = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_ij12d"]
 size = Vector2(2, 2)
@@ -19,13 +22,25 @@ albedo_texture = ExtResource("1_3364s")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ij12d")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.99999, -0.00398513, 0.00190183, 0.000488688, 0.527934, 0.849286, -0.00438855, -0.849276, 0.52793, 4.59845, 11.647, 12.3445)
-fov = 61.875
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.546146, 0.83769, 0, -0.83769, 0.546146, -5.19829, 10.6231, 5.71216)
+shadow_enabled = true
+shadow_bias = 0.15
+shadow_normal_bias = 3.0
+directional_shadow_blend_splits = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="GameIcon" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.99904, 0, 0, 0, 0.0127982, 0.998958, 0, -0.998958, 0.0127982, 4.03648, 1.47407, 0.124943)
 mesh = SubResource("QuadMesh_ij12d")
 surface_material_override/0 = SubResource("StandardMaterial3D_xq4ua")
 
 [node name="Level2" parent="." instance=ExtResource("2_ij12d")]
+
+[node name="CameraRig" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.32434, 0, 3.25359)
+script = ExtResource("3_xq4ua")
+
+[node name="Pivot" type="Node3D" parent="CameraRig"]
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig/Pivot"]
+fov = 60.0
