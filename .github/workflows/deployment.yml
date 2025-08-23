@@ -91,7 +91,7 @@ jobs:
           JS="${NEWBASE}.js"
           if [ -f "$JS" ]; then
             # executable must be the base name (no extension)
-            sed -i -E "s/(\"executable\"\\s*:\\s*\")${BASE}(\"\\s*)/\\1${NEWBASE}\\2/g" "$JS"
+            sed -i -E "s/(\"executable\"\\s*:\\s*\")${BASE}(\"\\s*)/\\1${NEWBASE}\\2/g" index.html
           fi
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
