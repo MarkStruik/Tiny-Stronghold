@@ -1,14 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3w1i65bayb68"]
+[gd_scene load_steps=12 format=3 uid="uid://b3w1i65bayb68"]
 
 [ext_resource type="PackedScene" uid="uid://bpflhk14kxlp6" path="res://scenes/tiles/PathStraight.tscn" id="1"]
+[ext_resource type="Script" uid="uid://by3jajiopxw68" path="res://scenes/levels/level_1.gd" id="1_brv20"]
 [ext_resource type="PackedScene" uid="uid://cwscyhf0wy7nh" path="res://scenes/tiles/PathCorner.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://c64pu5e82phcb" path="res://scenes/tiles/TowerPad.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://b8igse1h1n82" path="res://scenes/props/TreeCluster.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://bhqtjjs68116c" path="res://scenes/props/RockCluster.tscn" id="6_e5vnl"]
 [ext_resource type="PackedScene" uid="uid://br5awdlr03ccm" path="res://scenes/tiles/PathStart.tscn" id="6_m00rq"]
 [ext_resource type="PackedScene" uid="uid://bbbsgpbb7q5w6" path="res://scenes/tiles/PathBase.tscn" id="7_brv20"]
+[ext_resource type="PackedScene" uid="uid://cxgealb1r2d5v" path="res://assets/kenney/tile-crystal.glb" id="9_lha2r"]
+[ext_resource type="PackedScene" uid="uid://bdtfaxe0ry26e" path="res://assets/kenney/tile-tree-quad.glb" id="10_6owa4"]
+[ext_resource type="PackedScene" uid="uid://cdntrvlqtdp5d" path="res://assets/kenney/tile-tree-double.glb" id="11_n5pya"]
 
 [node name="Level1" type="Node3D"]
+script = ExtResource("1_brv20")
 
 [node name="Pads" type="Node3D" parent="."]
 
@@ -43,10 +48,25 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 0, 
 [node name="PathStraight4" parent="Roads" instance=ExtResource("1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 8)
 
+[node name="PathCorner" parent="Roads" instance=ExtResource("6_m00rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="PathCorner2" parent="Roads" instance=ExtResource("2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16, 0, 4)
+
+[node name="PathCorner3" parent="Roads" instance=ExtResource("7_brv20")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16, 0, 12)
+
 [node name="Props" type="Node3D" parent="."]
 
 [node name="TreeCluster" parent="Props" instance=ExtResource("5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8)
+
+[node name="TreeCluster3" parent="Props" instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 12)
+
+[node name="TreeCluster4" parent="Props" instance=ExtResource("5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 12)
 
 [node name="RockCluster" parent="Props" instance=ExtResource("6_e5vnl")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 8, 0, 0)
@@ -57,11 +77,44 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
 [node name="RockCluster2" parent="Props" instance=ExtResource("6_e5vnl")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12, 0, 8)
 
-[node name="PathCorner" parent="." instance=ExtResource("6_m00rq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+[node name="RockCluster3" parent="Props" instance=ExtResource("6_e5vnl")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12, 0, 16)
 
-[node name="PathCorner2" parent="." instance=ExtResource("2")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16, 0, 4)
+[node name="RockCluster4" parent="Props" instance=ExtResource("6_e5vnl")]
+transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, 20, 0, 16)
 
-[node name="PathCorner3" parent="." instance=ExtResource("7_brv20")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16, 0, 12)
+[node name="TreeCluster6" parent="Props" instance=ExtResource("5")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 0, -3.8)
+
+[node name="TreeCluster7" parent="Props" instance=ExtResource("5")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -4, 0, -3.8)
+
+[node name="TreeCluster8" parent="Props" instance=ExtResource("5")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -7.8)
+
+[node name="RockCluster5" parent="Props" instance=ExtResource("6_e5vnl")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 4, 0, -7.8)
+
+[node name="RockCluster6" parent="Props" instance=ExtResource("6_e5vnl")]
+transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, -4, 0, -7.8)
+
+[node name="tile-crystal2" parent="." instance=ExtResource("9_lha2r")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 20, 0, 8)
+
+[node name="tile-crystal4" parent="." instance=ExtResource("9_lha2r")]
+transform = Transform3D(-1.74846e-07, 0, 4, 0, 4, 0, -4, 0, -1.74846e-07, -4, 0, 4)
+
+[node name="tile-crystal3" parent="." instance=ExtResource("9_lha2r")]
+transform = Transform3D(-1.74846e-07, 0, 4, 0, 4, 0, -4, 0, -1.74846e-07, 16, 0, 16)
+
+[node name="tile-tree-quad2" parent="." instance=ExtResource("10_6owa4")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 20, 0, 4)
+
+[node name="tile-tree-quad3" parent="." instance=ExtResource("10_6owa4")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -4, 0, 0)
+
+[node name="tile-tree-double2" parent="." instance=ExtResource("11_n5pya")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -4, 0, 8)
+
+[node name="tile-tree-double3" parent="." instance=ExtResource("11_n5pya")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 20, 0, 0)

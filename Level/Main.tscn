@@ -9,7 +9,7 @@ background_energy_multiplier = 1.75
 ambient_light_color = Color(0.0925514, 0.397095, 0.377813, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xq4ua"]
-albedo_color = Color(0.819608, 0.537255, 0.32549, 1)
+albedo_color = Color(0.260164, 0.595848, 0.415614, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_v4ypu"]
 material = SubResource("StandardMaterial3D_xq4ua")
@@ -34,6 +34,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.242676, -0.0861857, 0.03436
 [node name="CameraRig" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.32434, 0, 3.25359)
 script = ExtResource("3_xq4ua")
+start_distance = 30.0
 auto_spin_on_start = true
 
 [node name="Pivot" type="Node3D" parent="CameraRig"]
