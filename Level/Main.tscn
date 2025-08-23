@@ -35,6 +35,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.242676, -0.0861857, 0.03436
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.32434, 0, 3.25359)
 script = ExtResource("3_xq4ua")
 start_distance = 30.0
+min_pitch_deg = 35.0
+max_pitch_deg = 55.0
 auto_spin_on_start = true
 
 [node name="Pivot" type="Node3D" parent="CameraRig"]
