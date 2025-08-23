@@ -72,5 +72,4 @@ cam_cw={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-renderer/rendering_method.web="mobile"
 textures/vram_compression/import_etc2_astc=true
