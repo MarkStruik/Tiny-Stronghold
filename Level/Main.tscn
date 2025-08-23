@@ -38,9 +38,6 @@ shadow_bias = 0.15
 directional_shadow_blend_splits = true
 directional_shadow_max_distance = 80.0
 
-[node name="Level2" parent="." instance=ExtResource("2_ij12d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.242676, -0.0861857, 0.0343623)
-
 [node name="CameraRig" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.32434, 0, 3.25359)
 script = ExtResource("3_xq4ua")
@@ -58,33 +55,26 @@ fov = 60.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0975866, 0)
 mesh = SubResource("PlaneMesh_v4ypu")
 
-[node name="EnemyPath" type="Path3D" parent="."]
+[node name="Level_1" type="Node3D" parent="."]
+
+[node name="Level 1 map" parent="Level_1" instance=ExtResource("2_ij12d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.242676, -0.0861857, 0.0343623)
+
+[node name="EnemyPath" type="Path3D" parent="Level_1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.275455, 0.987965, -4.01009)
 curve = SubResource("Curve3D_xq4ua")
 
-[node name="PathFollowTemplate" type="PathFollow3D" parent="EnemyPath" groups=["PathTemplate"]]
+[node name="PathFollowTemplate" type="PathFollow3D" parent="Level_1/EnemyPath" groups=["PathTemplate"]]
 transform = Transform3D(-0.999919, 0, -0.0117709, 0, 0.999985, 0, 0.0117709, 0, -0.999919, 16.064, 0.5, 15.928)
 visible = false
 progress = 30.2755
 
-[node name="Spawn" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.293172, 0, -5.08253)
-
-[node name="Base" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0465, 0, 11.9643)
-
-[node name="Area3D" type="Area3D" parent="Base"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Base/Area3D"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.40032, 0)
-shape = SubResource("SphereShape3D_v4ypu")
-
-[node name="Spawner" type="Node" parent="." groups=["Spawner"]]
+[node name="Spawner" type="Node" parent="Level_1" groups=["Spawner"]]
 script = ExtResource("4_v4ypu")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Spawner"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Level_1/Spawner"]
 
-[node name="Button" type="Button" parent="Spawner/CanvasLayer"]
+[node name="Button" type="Button" parent="Level_1/Spawner/CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -98,4 +88,16 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Start Demo"
 
-[connection signal="pressed" from="Spawner/CanvasLayer/Button" to="Spawner" method="start_demo_wave"]
+[node name="Spawn" type="Marker3D" parent="Level_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.293172, 0, -5.08253)
+
+[node name="Base" type="Marker3D" parent="Level_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0465, 0, 11.9643)
+
+[node name="Area3D" type="Area3D" parent="Level_1/Base"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level_1/Base/Area3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.40032, 0)
+shape = SubResource("SphereShape3D_v4ypu")
+
+[connection signal="pressed" from="Level_1/Spawner/CanvasLayer/Button" to="Level_1/Spawner" method="start_demo_wave"]
