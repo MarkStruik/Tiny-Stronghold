@@ -40,6 +40,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.242676, -0.0861857, 0.03436
 [node name="CameraRig" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.32434, 0, 3.25359)
 script = ExtResource("3_xq4ua")
+auto_spin_on_start = true
 
 [node name="Pivot" type="Node3D" parent="CameraRig"]
 
