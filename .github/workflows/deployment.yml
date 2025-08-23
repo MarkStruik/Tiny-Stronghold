@@ -1,4 +1,4 @@
-name: Export Web & Deploy (cache-busted + summary link)
+name: Export Web & Deploy to GitHub Pages
 
 on:
   push:
@@ -15,8 +15,8 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  GODOT_VERSION: "4.2.2"       # ← set your exact version (e.g., 4.3)
-  GODOT_TAG: "4.2.2-stable"    # ← must match release filenames
+  GODOT_VERSION: "4.4.1"        # e.g. 4.4.1
+  GODOT_TAG: "4.4.1-stable"     # e.g. 4.4.1-stable
 
 jobs:
   export-web:
@@ -27,13 +27,16 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install tools
-        run: sudo apt-get update && sudo apt-get install -y unzip
+        run: sudo apt-get update && sudo apt-get install -y unzip curl
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
       - name: Cache export templates
         uses: actions/cache@v4
         with:
           path: ~/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable
-          key: godot-templates-${{ env.GODOT_VERSION }}
+          key: godot-templates-${{ env.GODOT_TAG }}
 
       - name: Download Godot editor (Linux x86_64)
         run: |
@@ -42,23 +45,28 @@ jobs:
           unzip -q godot.zip
           mv Godot_v${{ env.GODOT_TAG }}_linux.x86_64 godot
           chmod +x godot
+          ./godot --version
 
       - name: Download export templates (if not cached)
         run: |
           TEMPLATES_DIR="$HOME/.local/share/godot/export_templates/${{ env.GODOT_VERSION }}.stable"
-          if [ ! -d "$TEMPLATES_DIR" ]; then
+          if [ ! -d "$TEMPLATES_DIR" ] || [ -z "$(ls -A "$TEMPLATES_DIR" || true)" ]; then
             mkdir -p "$TEMPLATES_DIR"
             curl -L -o templates.tpz \
               https://github.com/godotengine/godot/releases/download/${{ env.GODOT_TAG }}/Godot_v${{ env.GODOT_TAG }}_export_templates.tpz
-            unzip -q templates.tpz -d "$TEMPLATES_DIR"
+            # IMPORTANT: flatten the 'templates/' folder in the tpz into TEMPLATES_DIR
+            unzip -jq templates.tpz -d "$TEMPLATES_DIR"
           fi
+          ls -la "$TEMPLATES_DIR"
 
       - name: Ensure export folder
         run: mkdir -p build/web
 
-      - name: Export HTML5 (Web)
-        run: |
-          ./godot --headless --verbose --export-release "Web" "build/web/index.html"
+      - name: Import assets (deterministic CI)
+        run: ./godot --headless --path . --import
+
+      - name: Export HTML5 (Web release)
+        run: ./godot --headless --verbose --path . --export-release "Web" "build/web/index.html"
 
       - name: Cache-bust filenames and patch index.html
         working-directory: build/web
@@ -83,14 +91,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-      - name: Add “Play” link to job summary
-        run: |
-          echo "### ✅ Deployed!" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "👉 **Play here:** ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
