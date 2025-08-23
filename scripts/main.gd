@@ -2,6 +2,9 @@
 extends Node
 
 func _ready() -> void:
+	#ONLY FOR DEMO
+	$Spawner.start_demo_wave()
+	
 	# Only run when using the Compatibility renderer or Web
 	if not (OS.has_feature("web") or RenderingServer.get_video_adapter_name().to_lower().find("compat") != -1):
 		return
@@ -29,6 +32,7 @@ func _ready() -> void:
 
 	# Or: walk scene and match by name
 	_walk_and_tune(get_tree().get_root(), names)
+
 
 func _walk_and_tune(n: Node, names: Array[String]) -> void:
 	for c in n.get_children():

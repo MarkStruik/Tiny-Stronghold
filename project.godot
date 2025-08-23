@@ -15,6 +15,10 @@ run/main_scene="uid://bug56bo1gaxcm"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Game="*res://scripts/Game.gd"
+
 [input]
 
 cam_orbit={

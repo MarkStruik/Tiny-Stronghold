@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bug56bo1gaxcm"]
+[gd_scene load_steps=10 format=3 uid="uid://bug56bo1gaxcm"]
 
 [ext_resource type="Script" uid="uid://dc0atc0amvkf5" path="res://scripts/main.gd" id="1_v4ypu"]
 [ext_resource type="PackedScene" uid="uid://b3w1i65bayb68" path="res://scenes/levels/Level1.tscn" id="2_ij12d"]
 [ext_resource type="Script" uid="uid://cf0riixnrb0g0" path="res://scripts/camera_rig.gd" id="3_xq4ua"]
+[ext_resource type="Script" uid="uid://dyxlrv8j2dldd" path="res://scripts/spawner.gd" id="4_v4ypu"]
 
 [sub_resource type="Environment" id="Environment_ij12d"]
 background_energy_multiplier = 1.75
@@ -14,6 +15,15 @@ albedo_color = Color(0.260164, 0.595848, 0.415614, 1)
 [sub_resource type="PlaneMesh" id="PlaneMesh_v4ypu"]
 material = SubResource("StandardMaterial3D_xq4ua")
 size = Vector2(500, 500)
+
+[sub_resource type="Curve3D" id="Curve3D_xq4ua"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0, 0, 0, -0.23, 0.5, 5.936, 0, 0, 0, 0, 0, 0, 1.538, 0.5, 8.011, 0, 0, 0, 0, 0, 0, 14.297, 0.5, 7.781, 0, 0, 0, 0, 0, 0, 15.988, 0.5, 9.472, 0, 0, 0, 0, 0, 0, 16.064, 0.5, 15.928),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v4ypu"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_v4ypu")
@@ -46,4 +56,39 @@ fov = 60.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0975866, 0)
+visible = false
 mesh = SubResource("PlaneMesh_v4ypu")
+
+[node name="EnemyPath" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.275455, 0.987965, -4.01009)
+curve = SubResource("Curve3D_xq4ua")
+
+[node name="PathFollowTemplate" type="PathFollow3D" parent="EnemyPath" groups=["PathTemplate"]]
+transform = Transform3D(-0.999919, 0, -0.0117709, 0, 0.999985, 0, 0.0117709, 0, -0.999919, 16.064, 0.5, 15.928)
+visible = false
+progress = 30.2755
+
+[node name="Spawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.293172, 0, -5.08253)
+
+[node name="Base" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0465, 0, 11.9643)
+
+[node name="Area3D" type="Area3D" parent="Base"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Base/Area3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.40032, 0)
+shape = SubResource("SphereShape3D_v4ypu")
+
+[node name="Spawner" type="Node" parent="." groups=["Spawner"]]
+script = ExtResource("4_v4ypu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Spawner"]
+visible = false
+
+[node name="Button" type="Button" parent="Spawner/CanvasLayer"]
+offset_right = 165.0
+offset_bottom = 55.0
+text = "Start Demo"
+
+[connection signal="pressed" from="Spawner/CanvasLayer/Button" to="Spawner" method="start_demo_wave"]
