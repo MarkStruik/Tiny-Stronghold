@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d4mhkrtppm84h"]
+
+[ext_resource type="Shader" uid="uid://bdn3ub1x6bgju" path="res://shaders/BaseToon.gdshader" id="1_w8ner"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_w8ner")

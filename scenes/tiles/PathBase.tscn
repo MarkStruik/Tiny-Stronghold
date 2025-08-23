@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbbsgpbb7q5w6"]
+
+[ext_resource type="PackedScene" uid="uid://bgo5cntl1acqc" path="res://assets/kenney/tile-end.glb" id="1_2yads"]
+[ext_resource type="PackedScene" uid="uid://brtkafog25qac" path="res://assets/kenney/tower-square-bottom-a.glb" id="2_r7xi7"]
+[ext_resource type="PackedScene" uid="uid://bicgao7n1vql2" path="res://assets/kenney/tower-square-middle-b.glb" id="3_k4i61"]
+[ext_resource type="PackedScene" uid="uid://bvuwecuovqj86" path="res://assets/kenney/tower-square-top-a.glb" id="4_ty8f2"]
+
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(4, 0.25, 4)
+
+[node name="PathCorner" type="Node3D"]
+
+[node name="Visual" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+
+[node name="tile-end2" parent="Visual" instance=ExtResource("1_2yads")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="tower-square-bottom-a2" parent="Visual" instance=ExtResource("2_r7xi7")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.352316, 0)
+
+[node name="tower-square-middle-b2" parent="Visual" instance=ExtResource("3_k4i61")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.32718, 0)
+
+[node name="tower-square-top-a2" parent="Visual" instance=ExtResource("4_ty8f2")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.15919, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+shape = SubResource("2")

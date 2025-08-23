@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://bug56bo1gaxcm"]
+[gd_scene load_steps=7 format=3 uid="uid://bug56bo1gaxcm"]
 
-[ext_resource type="Texture2D" uid="uid://ce8af05xu4emv" path="res://icon.svg" id="1_3364s"]
 [ext_resource type="Script" uid="uid://dc0atc0amvkf5" path="res://scripts/main.gd" id="1_v4ypu"]
 [ext_resource type="PackedScene" uid="uid://b3w1i65bayb68" path="res://scenes/levels/Level1.tscn" id="2_ij12d"]
 [ext_resource type="Script" uid="uid://cf0riixnrb0g0" path="res://scripts/camera_rig.gd" id="3_xq4ua"]
@@ -9,12 +8,12 @@
 background_energy_multiplier = 1.75
 ambient_light_color = Color(0.0925514, 0.397095, 0.377813, 1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_ij12d"]
-size = Vector2(2, 2)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xq4ua"]
-transparency = 1
-albedo_texture = ExtResource("1_3364s")
+albedo_color = Color(0.819608, 0.537255, 0.32549, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v4ypu"]
+material = SubResource("StandardMaterial3D_xq4ua")
+size = Vector2(500, 500)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_v4ypu")
@@ -29,11 +28,6 @@ shadow_bias = 0.15
 directional_shadow_blend_splits = true
 directional_shadow_max_distance = 80.0
 
-[node name="GameIcon" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.99904, 0, 0, 0, 0.0127982, 0.998958, 0, -0.998958, 0.0127982, 4.03648, 1.47407, 0.124943)
-mesh = SubResource("QuadMesh_ij12d")
-surface_material_override/0 = SubResource("StandardMaterial3D_xq4ua")
-
 [node name="Level2" parent="." instance=ExtResource("2_ij12d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.242676, -0.0861857, 0.0343623)
 
@@ -46,3 +40,7 @@ auto_spin_on_start = true
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig/Pivot"]
 fov = 60.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0975866, 0)
+mesh = SubResource("PlaneMesh_v4ypu")

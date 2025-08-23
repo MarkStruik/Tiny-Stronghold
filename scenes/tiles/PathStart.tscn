@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://br5awdlr03ccm"]
+
+[ext_resource type="PackedScene" uid="uid://bhxiel3gf4wlm" path="res://assets/kenney/tile-spawn-end-round.glb" id="1_xquru"]
+
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(4, 0.25, 4)
+
+[node name="PathCorner" type="Node3D"]
+
+[node name="Visual" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+
+[node name="tile-spawn-end-round2" parent="Visual" instance=ExtResource("1_xquru")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+shape = SubResource("2")

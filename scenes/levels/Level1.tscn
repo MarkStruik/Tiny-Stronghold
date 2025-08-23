@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3w1i65bayb68"]
+[gd_scene load_steps=8 format=3 uid="uid://b3w1i65bayb68"]
 
 [ext_resource type="PackedScene" uid="uid://bpflhk14kxlp6" path="res://scenes/tiles/PathStraight.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://cwscyhf0wy7nh" path="res://scenes/tiles/PathCorner.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://cg0ty0bg5txx3" path="res://scenes/tiles/PathTJunction.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://c64pu5e82phcb" path="res://scenes/tiles/TowerPad.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://b8igse1h1n82" path="res://scenes/props/TreeCluster.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://bhqtjjs68116c" path="res://scenes/props/RockCluster.tscn" id="6_e5vnl"]
+[ext_resource type="PackedScene" uid="uid://br5awdlr03ccm" path="res://scenes/tiles/PathStart.tscn" id="6_m00rq"]
+[ext_resource type="PackedScene" uid="uid://bbbsgpbb7q5w6" path="res://scenes/tiles/PathBase.tscn" id="7_brv20"]
 
 [node name="Level1" type="Node3D"]
 
@@ -13,6 +14,12 @@
 
 [node name="Pads#Pad1" parent="Pads" instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="Pads#Pad3" parent="Pads" instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 0)
+
+[node name="Pads#Pad4" parent="Pads" instance=ExtResource("4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
 
 [node name="Pads#Pad2" parent="Pads" instance=ExtResource("4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
@@ -27,14 +34,14 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 [node name="S2" parent="Roads" instance=ExtResource("1")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 0, 4)
 
-[node name="TJ" parent="Roads" instance=ExtResource("3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4)
-
-[node name="PathStraight" parent="Roads" instance=ExtResource("1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
-
 [node name="PathStraight2" parent="Roads" instance=ExtResource("1")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12, 0, 4)
+
+[node name="PathStraight3" parent="Roads" instance=ExtResource("1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8, 0, 4)
+
+[node name="PathStraight4" parent="Roads" instance=ExtResource("1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 8)
 
 [node name="Props" type="Node3D" parent="."]
 
@@ -49,3 +56,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
 
 [node name="RockCluster2" parent="Props" instance=ExtResource("6_e5vnl")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12, 0, 8)
+
+[node name="PathCorner" parent="." instance=ExtResource("6_m00rq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="PathCorner2" parent="." instance=ExtResource("2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 16, 0, 4)
+
+[node name="PathCorner3" parent="." instance=ExtResource("7_brv20")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16, 0, 12)
