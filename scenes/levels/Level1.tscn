@@ -98,23 +98,23 @@ transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 4, 0, 
 [node name="RockCluster6" parent="Props" instance=ExtResource("6_e5vnl")]
 transform = Transform3D(-2, 0, -1.74846e-07, 0, 2, 0, 1.74846e-07, 0, -2, -4, 0, -7.8)
 
-[node name="tile-crystal2" parent="." instance=ExtResource("9_lha2r")]
+[node name="tile-crystal2" parent="Props" instance=ExtResource("9_lha2r")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 20, 0, 8)
 
-[node name="tile-crystal4" parent="." instance=ExtResource("9_lha2r")]
+[node name="tile-crystal4" parent="Props" instance=ExtResource("9_lha2r")]
 transform = Transform3D(-1.74846e-07, 0, 4, 0, 4, 0, -4, 0, -1.74846e-07, -4, 0, 4)
 
-[node name="tile-crystal3" parent="." instance=ExtResource("9_lha2r")]
+[node name="tile-crystal3" parent="Props" instance=ExtResource("9_lha2r")]
 transform = Transform3D(-1.74846e-07, 0, 4, 0, 4, 0, -4, 0, -1.74846e-07, 16, 0, 16)
 
-[node name="tile-tree-quad2" parent="." instance=ExtResource("10_6owa4")]
+[node name="tile-tree-quad2" parent="Props" instance=ExtResource("10_6owa4")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 20, 0, 4)
 
-[node name="tile-tree-quad3" parent="." instance=ExtResource("10_6owa4")]
+[node name="tile-tree-quad3" parent="Props" instance=ExtResource("10_6owa4")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -4, 0, 0)
 
-[node name="tile-tree-double2" parent="." instance=ExtResource("11_n5pya")]
+[node name="tile-tree-double2" parent="Props" instance=ExtResource("11_n5pya")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -4, 0, 8)
 
-[node name="tile-tree-double3" parent="." instance=ExtResource("11_n5pya")]
+[node name="tile-tree-double3" parent="Props" instance=ExtResource("11_n5pya")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 20, 0, 0)
