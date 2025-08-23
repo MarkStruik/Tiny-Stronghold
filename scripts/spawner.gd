@@ -4,6 +4,7 @@ extends Node
 var spawning := false
  
 func start_demo_wave():
+	$CanvasLayer/Button.visible = false
 	if spawning:
 		return 
 

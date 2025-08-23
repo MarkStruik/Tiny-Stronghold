@@ -107,7 +107,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if _auto_spin_enabled and auto_spin_on_start:
 		var now_s := Time.get_ticks_msec() * 0.001
 		if (now_s - _start_time_s) >= input_grace_sec:
-			if event.is_pressed() or event is InputEventMouseMotion \
+			if event.is_pressed() \
 			or event is InputEventPanGesture or event is InputEventMagnifyGesture \
 			or event is InputEventScreenTouch or event is InputEventScreenDrag:
 				_auto_spin_enabled = false

@@ -56,7 +56,6 @@ fov = 60.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0975866, 0)
-visible = false
 mesh = SubResource("PlaneMesh_v4ypu")
 
 [node name="EnemyPath" type="Path3D" parent="."]
@@ -84,11 +83,19 @@ shape = SubResource("SphereShape3D_v4ypu")
 script = ExtResource("4_v4ypu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Spawner"]
-visible = false
 
 [node name="Button" type="Button" parent="Spawner/CanvasLayer"]
-offset_right = 165.0
-offset_bottom = 55.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.5
+offset_top = -27.5
+offset_right = 82.5
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
 text = "Start Demo"
 
 [connection signal="pressed" from="Spawner/CanvasLayer/Button" to="Spawner" method="start_demo_wave"]
