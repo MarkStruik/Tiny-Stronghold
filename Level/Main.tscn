@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bug56bo1gaxcm"]
+[gd_scene load_steps=8 format=3 uid="uid://bug56bo1gaxcm"]
 
 [ext_resource type="Texture2D" uid="uid://ce8af05xu4emv" path="res://icon.svg" id="1_3364s"]
+[ext_resource type="Script" uid="uid://dc0atc0amvkf5" path="res://scripts/main.gd" id="1_v4ypu"]
 [ext_resource type="PackedScene" uid="uid://b3w1i65bayb68" path="res://scenes/levels/Level1.tscn" id="2_ij12d"]
 [ext_resource type="Script" uid="uid://cf0riixnrb0g0" path="res://scripts/camera_rig.gd" id="3_xq4ua"]
 
@@ -16,6 +17,7 @@ transparency = 1
 albedo_texture = ExtResource("1_3364s")
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_v4ypu")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ij12d")
