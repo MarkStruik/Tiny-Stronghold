@@ -68,18 +68,31 @@ jobs:
       - name: Export HTML5 (Web release)
         run: ./godot --headless --verbose --path . --export-release "Web" "build/web/index.html"
 
-      - name: Cache-bust filenames and patch index.html
+      - name: Cache-bust filenames and patch index.html + engine config
         working-directory: build/web
         run: |
+          set -e
           HASH=$(git rev-parse --short HEAD)
-          # rename and patch references in index.html
-          for f in *.wasm *.pck *.js; do
+          BASE=index
+          NEWBASE="${BASE}_${HASH}"
+
+          # 1) rename the main files
+          for f in ${BASE}.js ${BASE}.pck ${BASE}.wasm ${BASE}.service.worker.js; do
             [ -e "$f" ] || continue
-            NEW="${f%.*}_${HASH}.${f##*.}"
+            ext="${f##*.}"
+            name="${f%.*}"
+            NEW="${name}_${HASH}.${ext}"
             mv "$f" "$NEW"
+            # 2) rewrite references in index.html
             sed -i "s|$f|$NEW|g" index.html
           done
 
+          # 3) patch the *renamed* JS file's GODOT_CONFIG
+          JS="${NEWBASE}.js"
+          if [ -f "$JS" ]; then
+            # executable must be the base name (no extension)
+            sed -i -E "s/(\"executable\"\\s*:\\s*\")${BASE}(\"\\s*)/\\1${NEWBASE}\\2/g" "$JS"
+          fi
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
