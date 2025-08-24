@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bug56bo1gaxcm"]
+[gd_scene load_steps=12 format=3 uid="uid://bug56bo1gaxcm"]
 
 [ext_resource type="Script" uid="uid://dc0atc0amvkf5" path="res://scripts/main.gd" id="1_v4ypu"]
 [ext_resource type="PackedScene" uid="uid://b3w1i65bayb68" path="res://scenes/levels/Level1.tscn" id="2_ij12d"]
 [ext_resource type="Script" uid="uid://cf0riixnrb0g0" path="res://scripts/camera_rig.gd" id="3_xq4ua"]
 [ext_resource type="Script" uid="uid://dyxlrv8j2dldd" path="res://scripts/spawner.gd" id="4_v4ypu"]
+[ext_resource type="Script" uid="uid://csnng6io68uui" path="res://scripts/area_3d.gd" id="5_5j4ky"]
 
 [sub_resource type="Environment" id="Environment_ij12d"]
 background_energy_multiplier = 1.75
@@ -24,6 +25,8 @@ _data = {
 point_count = 6
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_v4ypu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v4ypu"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_v4ypu")
@@ -100,5 +103,60 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0465, 0, 11.9643)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level_1/Base/Area3D"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.40032, 0)
 shape = SubResource("SphereShape3D_v4ypu")
+
+[node name="BuildTiles" type="Node3D" parent="."]
+
+[node name="Area3D" type="Area3D" parent="BuildTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
+script = ExtResource("5_5j4ky")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildTiles/Area3D"]
+shape = SubResource("BoxShape3D_v4ypu")
+
+[node name="Area3D2" type="Area3D" parent="BuildTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildTiles/Area3D2"]
+shape = SubResource("BoxShape3D_v4ypu")
+
+[node name="Area3D3" type="Area3D" parent="BuildTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildTiles/Area3D3"]
+shape = SubResource("BoxShape3D_v4ypu")
+
+[node name="Area3D4" type="Area3D" parent="BuildTiles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildTiles/Area3D4"]
+shape = SubResource("BoxShape3D_v4ypu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BuildMenu" type="Panel" parent="CanvasLayer"]
+visible = false
+offset_right = 269.0
+offset_bottom = 59.0
+
+[node name="Button" type="Button" parent="CanvasLayer/BuildMenu"]
+layout_mode = 0
+offset_right = 86.0
+offset_bottom = 58.0
+text = "Basic"
+
+[node name="Button2" type="Button" parent="CanvasLayer/BuildMenu"]
+layout_mode = 0
+offset_left = 87.0
+offset_top = 2.0
+offset_right = 174.0
+offset_bottom = 57.0
+text = "Slow"
+
+[node name="Button3" type="Button" parent="CanvasLayer/BuildMenu"]
+layout_mode = 0
+offset_left = 176.0
+offset_right = 267.0
+offset_bottom = 58.0
+text = "Splash"
 
 [connection signal="pressed" from="Level_1/Spawner/CanvasLayer/Button" to="Level_1/Spawner" method="start_demo_wave"]
