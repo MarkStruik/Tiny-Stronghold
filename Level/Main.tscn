@@ -87,6 +87,7 @@ offset_bottom = 27.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Start Demo"
+metadata/_edit_use_anchors_ = true
 
 [node name="Spawn" type="Marker3D" parent="Level_1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.293172, 0, -5.08253)

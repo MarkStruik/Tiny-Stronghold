@@ -1,0 +1,165 @@
+[gd_scene load_steps=19 format=3 uid="uid://bhkcht40bruyg"]
+
+[ext_resource type="PackedScene" uid="uid://br5awdlr03ccm" path="res://scenes/tiles/PathStart.tscn" id="1_a7463"]
+[ext_resource type="Script" uid="uid://b3c7u5fbuv1dy" path="res://Level/level_2.gd" id="1_ayypr"]
+[ext_resource type="PackedScene" uid="uid://c64pu5e82phcb" path="res://scenes/tiles/TowerPad.tscn" id="2_8sig8"]
+[ext_resource type="PackedScene" uid="uid://bpflhk14kxlp6" path="res://scenes/tiles/PathStraight.tscn" id="2_cd4c1"]
+[ext_resource type="PackedScene" uid="uid://babr3njy0e8pe" path="res://assets/kenney/tile-tree.glb" id="4_hkd23"]
+[ext_resource type="PackedScene" uid="uid://cwscyhf0wy7nh" path="res://scenes/tiles/PathCorner.tscn" id="4_vtmy8"]
+[ext_resource type="PackedScene" uid="uid://bdtfaxe0ry26e" path="res://assets/kenney/tile-tree-quad.glb" id="5_v57le"]
+[ext_resource type="PackedScene" uid="uid://85wpnwr17dkp" path="res://assets/kenney/tile-river-bridge.glb" id="6_ayypr"]
+[ext_resource type="PackedScene" uid="uid://bktp8wwe5e01h" path="res://assets/kenney/tile-river-straight.glb" id="7_wgc5d"]
+[ext_resource type="PackedScene" uid="uid://bcqp3oehm3wke" path="res://assets/kenney/tile-river-waterfall.glb" id="8_sukcg"]
+[ext_resource type="PackedScene" uid="uid://bbbsgpbb7q5w6" path="res://scenes/tiles/PathBase.tscn" id="10_lgsct"]
+[ext_resource type="PackedScene" uid="uid://7lu16f8q0iog" path="res://assets/kenney/tile.glb" id="10_v57le"]
+[ext_resource type="PackedScene" uid="uid://bs8tghqf8dqxp" path="res://assets/kenney/tile-river-transition.glb" id="11_l3l4h"]
+[ext_resource type="PackedScene" uid="uid://c8lvgy4d2c122" path="res://assets/kenney/detail-crystal-large.glb" id="13_ayypr"]
+[ext_resource type="PackedScene" uid="uid://xq3iuk22x0xx" path="res://assets/kenney/detail-dirt-large.glb" id="14_sukcg"]
+[ext_resource type="PackedScene" uid="uid://ndoil0fn3w6b" path="res://assets/kenney/tile-straight-slope.glb" id="15_wgc5d"]
+
+[sub_resource type="Curve3D" id="Curve3D_sukcg"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, 0, 0, 0, 2.742, 0.5, 0.014, 0, 0, 0, 0, 0, 0, 3.506, 0.5, -0.84, 0, 0, 0, 0, 0, 0, 3.839, 0.5, -9.989, 0, 0, 0, 0, 0, 0, 5.468, 0.5, -12.027, 0, 0, 0, 0, 0, 0, 10.296, 0.5, -12.172, 0, 0, 0, 0, 0, 0, 11.937, 0.5, -10.724, 0, 0, 0, 0, 0, 0, 11.937, 0.5, -0.247),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sukcg"]
+
+[node name="Level 2" type="Node3D"]
+script = ExtResource("1_ayypr")
+
+[node name="ps" type="Node3D" parent="."]
+
+[node name="PathStraight" parent="ps" instance=ExtResource("2_cd4c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 26)
+
+[node name="PathStraight2" parent="ps" instance=ExtResource("2_cd4c1")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0, 18)
+
+[node name="PathStraight3" parent="ps" instance=ExtResource("2_cd4c1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 26)
+
+[node name="tp" type="Node3D" parent="."]
+
+[node name="TowerPad" parent="tp" instance=ExtResource("2_8sig8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 14)
+
+[node name="TowerPad2" parent="tp" instance=ExtResource("2_8sig8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 26)
+
+[node name="TowerPad3" parent="tp" instance=ExtResource("2_8sig8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 26)
+
+[node name="pc" type="Node3D" parent="."]
+
+[node name="PathCorner" parent="pc" instance=ExtResource("4_vtmy8")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2, 0, 30)
+
+[node name="PathCorner2" parent="pc" instance=ExtResource("4_vtmy8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 18)
+
+[node name="PathCorner3" parent="pc" instance=ExtResource("4_vtmy8")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 6, 0, 18)
+
+[node name="tt" type="Node3D" parent="."]
+
+[node name="tile-tree" parent="tt" instance=ExtResource("4_hkd23")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 2, 0, 30)
+
+[node name="tile-tree-quad" parent="tt" instance=ExtResource("5_v57le")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6, 0, 26)
+
+[node name="tile-tree-quad2" parent="tt" instance=ExtResource("5_v57le")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6, 0, 18)
+
+[node name="tile-tree-quad3" parent="tt" instance=ExtResource("5_v57le")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -6, 0, 14)
+
+[node name="tile-tree-quad4" parent="tt" instance=ExtResource("5_v57le")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -2, 0, 14)
+
+[node name="river t\'s" type="Node3D" parent="."]
+
+[node name="tile-river-bridge" parent="river t\'s" instance=ExtResource("6_ayypr")]
+transform = Transform3D(-1.74846e-07, 0, -4, 0, 4, 0, 4, 0, -1.74846e-07, 6, 0, 22)
+
+[node name="tile-river-bridge2" parent="river t\'s" instance=ExtResource("6_ayypr")]
+transform = Transform3D(-1.74846e-07, 0, -4, 0, 4, 0, 4, 0, -1.74846e-07, -2, 0, 22)
+
+[node name="tile-river-straight2" parent="river t\'s" instance=ExtResource("7_wgc5d")]
+transform = Transform3D(-1.74846e-07, 0, -4, 0, 4, 0, 4, 0, -1.74846e-07, 2, 0, 22)
+
+[node name="tile-river-waterfall" parent="river t\'s" instance=ExtResource("8_sukcg")]
+transform = Transform3D(-1.74846e-07, 0, 4, 0, 4, 0, -4, 0, -1.74846e-07, -6, 0, 22)
+
+[node name="tile-river-transition2" parent="river t\'s" instance=ExtResource("11_l3l4h")]
+transform = Transform3D(-1.74846e-07, 0, 4, 0, 4, 0, -4, 0, -1.74846e-07, 10, 0, 22)
+
+[node name="t" type="Node3D" parent="."]
+
+[node name="tile" parent="t" instance=ExtResource("10_v57le")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 6, 0, 14)
+
+[node name="tile2" parent="t" instance=ExtResource("10_v57le")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 10, 0, 14)
+
+[node name="tile3" parent="t" instance=ExtResource("10_v57le")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 14, 0, 14)
+
+[node name="tile4" parent="t" instance=ExtResource("10_v57le")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 14, 0, 26)
+
+[node name="tile5" parent="t" instance=ExtResource("10_v57le")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 14, 0, 30)
+
+[node name="tile6" parent="t" instance=ExtResource("10_v57le")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 10, 0, 30)
+
+[node name="tile7" parent="t" instance=ExtResource("10_v57le")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 14, 0, 18)
+
+[node name="tile8" parent="t" instance=ExtResource("10_v57le")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 10, 0, 18)
+
+[node name="tile-straight-slope2" parent="t" instance=ExtResource("15_wgc5d")]
+transform = Transform3D(-1.74846e-07, 0, -4, 0, 4, 0, 4, 0, -1.74846e-07, 14, 0, 22)
+
+[node name="d" type="Node3D" parent="."]
+
+[node name="detail-crystal-large" parent="d" instance=ExtResource("13_ayypr")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 10, 0.8, 14)
+
+[node name="detail-crystal-large2" parent="d" instance=ExtResource("13_ayypr")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 14, 0.8, 30)
+
+[node name="detail-dirt-large2" parent="d" instance=ExtResource("14_sukcg")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 14, 0.8, 26)
+
+[node name="detail-dirt-large3" parent="d" instance=ExtResource("14_sukcg")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 14, 0.8, 18)
+
+[node name="PathStart" parent="." instance=ExtResource("1_a7463")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 0, 30)
+
+[node name="PathBase" parent="." instance=ExtResource("10_lgsct")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 0, 30)
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 30)
+curve = SubResource("Curve3D_sukcg")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-0.00510563, 0, -0.999986, 0, 0.999999, 0, 0.999986, 0, -0.00510563, 0, 0.5, 0)
+
+[node name="Spawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 30)
+
+[node name="Base" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 30)
+
+[node name="Area3D" type="Area3D" parent="Base"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Base/Area3D"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1, 0)
+shape = SubResource("SphereShape3D_sukcg")
