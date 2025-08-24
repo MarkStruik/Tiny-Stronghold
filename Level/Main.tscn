@@ -82,18 +82,19 @@ script = ExtResource("4_v4ypu")
 [node name="CanvasLayer" type="CanvasLayer" parent="Level_1/Spawner"]
 
 [node name="Button" type="Button" parent="Level_1/Spawner/CanvasLayer"]
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -82.5
-offset_top = -27.5
-offset_right = 82.5
-offset_bottom = 27.5
+anchor_right = 0.549479
+anchor_bottom = 0.558642
+offset_left = -540.0
+offset_top = -290.0
+offset_right = -375.0
+offset_bottom = -235.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Start Demo"
+theme_override_font_sizes/font_size = 24
+text = "Start Demo Wave"
 metadata/_edit_use_anchors_ = true
 
 [node name="Spawn" type="Marker3D" parent="Level_1"]
@@ -111,31 +112,35 @@ shape = SubResource("SphereShape3D_v4ypu")
 [node name="BuildTiles" type="Node3D" parent="Level_1"]
 
 [node name="Area3D" type="Area3D" parent="Level_1/BuildTiles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.28646, 1, 0.143231)
 script = ExtResource("5_5j4ky")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level_1/BuildTiles/Area3D"]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_v4ypu")
 
 [node name="Area3D2" type="Area3D" parent="Level_1/BuildTiles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2579, 1, 0)
 script = ExtResource("7_318wc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level_1/BuildTiles/Area3D2"]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_v4ypu")
 
 [node name="Area3D3" type="Area3D" parent="Level_1/BuildTiles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25794, 1, 8.07738)
 script = ExtResource("7_318wc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level_1/BuildTiles/Area3D3"]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_v4ypu")
 
 [node name="Area3D4" type="Area3D" parent="Level_1/BuildTiles"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.257942, 1, 8.10318)
 script = ExtResource("7_318wc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level_1/BuildTiles/Area3D4"]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
 shape = SubResource("BoxShape3D_v4ypu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Level_1"]
@@ -146,6 +151,9 @@ offset_right = 269.0
 offset_bottom = 59.0
 script = ExtResource("6_mdnx3")
 camera = NodePath("../../../CameraRig/Pivot/Camera3D")
+BasicColor = Color(1, 1, 1, 1)
+SlowColor = Color(0.56, 0.706667, 1, 1)
+SplashColor = Color(0.306058, 0.95, 0.1615, 1)
 
 [node name="Button" type="Button" parent="Level_1/CanvasLayer/BuildMenu"]
 layout_mode = 0
@@ -169,3 +177,7 @@ offset_bottom = 58.0
 text = "Splash"
 
 [connection signal="pressed" from="Level_1/Spawner/CanvasLayer/Button" to="Level_1/Spawner" method="start_demo_wave"]
+[connection signal="build_requested" from="Level_1/CanvasLayer/BuildMenu" to="Level_1/CanvasLayer/BuildMenu" method="_build"]
+[connection signal="pressed" from="Level_1/CanvasLayer/BuildMenu/Button" to="Level_1/CanvasLayer/BuildMenu" method="_on_Basic_pressed"]
+[connection signal="pressed" from="Level_1/CanvasLayer/BuildMenu/Button2" to="Level_1/CanvasLayer/BuildMenu" method="_on_Slow_pressed"]
+[connection signal="pressed" from="Level_1/CanvasLayer/BuildMenu/Button3" to="Level_1/CanvasLayer/BuildMenu" method="_on_Splash_pressed"]

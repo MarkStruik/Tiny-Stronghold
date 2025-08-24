@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwbeot8mwip32"]
+
+[ext_resource type="PackedScene" uid="uid://blfvytl37d4h3" path="res://assets/kenney/weapon-cannon.glb" id="1_8112j"]
+[ext_resource type="Script" uid="uid://dm0qyn6mqsdq0" path="res://scenes/weapon_cannon_2.gd" id="2_757i8"]
+
+[node name="weapon-cannon2" instance=ExtResource("1_8112j")]
+script = ExtResource("2_757i8")
+
+[node name="barrel" parent="weapon-cannon" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.982153, -0.188084, 0, 0.188084, 0.982153, 1.44382e-15, 0.383, -0.00075)

@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var max_hp := 10 
+@export var max_hp := 8 
 @export var speed := 4.0 
 @export var reward := 5
 @export var damage_to_base := 1 
@@ -25,7 +25,7 @@ func _physics_process(delta):
 
 func take_damage(amount: float): 
 	hp -= amount 
-	
+	print( "Enemy took damage! Health left: ", hp)
 	if hp <= 0:
 		Game.add_money(reward) 
 		queue_free() 

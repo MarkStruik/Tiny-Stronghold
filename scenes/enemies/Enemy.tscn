@@ -6,11 +6,12 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_k7o7a"]
 
 [node name="Enemy" type="CharacterBody3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 script = ExtResource("1_k7o7a")
 
 [node name="enemy-ufo-a2" parent="." instance=ExtResource("1_hpe7p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.31638, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.31638, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Enemy"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.501599, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.501599, 0)
 shape = SubResource("SphereShape3D_k7o7a")

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://w5bwr05xme33"]
+
+[ext_resource type="Script" uid="uid://c3tifmtiu0222" path="res://scripts/bullet.gd" id="1_3c7c4"]
+[ext_resource type="PackedScene" uid="uid://chvnmx4up3s3j" path="res://assets/kenney/weapon-ammo-cannonball.glb" id="2_qswsy"]
+
+[node name="Bullet" type="Node3D"]
+script = ExtResource("1_3c7c4")
+
+[node name="weapon-ammo-cannonball2" parent="." instance=ExtResource("2_qswsy")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
