@@ -1,7 +1,7 @@
 extends Node
 
 var lives := 10 
-var money := 20000
+var money := 20
 
 func add_money(v:int): 
 	money += v 
