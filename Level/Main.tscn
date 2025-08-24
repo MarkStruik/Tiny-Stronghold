@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://bug56bo1gaxcm"]
+[gd_scene load_steps=15 format=3 uid="uid://bug56bo1gaxcm"]
 
 [ext_resource type="Script" uid="uid://dc0atc0amvkf5" path="res://scripts/main.gd" id="1_v4ypu"]
 [ext_resource type="PackedScene" uid="uid://b3w1i65bayb68" path="res://scenes/levels/Level1.tscn" id="2_ij12d"]
+[ext_resource type="Script" uid="uid://bcl3nnvnwpdmq" path="res://scripts/level_1.gd" id="3_xpi41"]
 [ext_resource type="Script" uid="uid://cf0riixnrb0g0" path="res://scripts/camera_rig.gd" id="3_xq4ua"]
 [ext_resource type="Script" uid="uid://dyxlrv8j2dldd" path="res://scripts/spawner.gd" id="4_v4ypu"]
 [ext_resource type="Script" uid="uid://csnng6io68uui" path="res://scripts/area_3d.gd" id="5_5j4ky"]
+[ext_resource type="Script" uid="uid://cllcov04wp5be" path="res://scripts/BuildMenu.gd" id="6_mdnx3"]
+[ext_resource type="Script" uid="uid://bn3vc2c3011ys" path="res://scripts/BuildTile.gd" id="7_318wc"]
 
 [sub_resource type="Environment" id="Environment_ij12d"]
 background_energy_multiplier = 1.75
@@ -59,6 +62,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0975866, 0)
 mesh = SubResource("PlaneMesh_v4ypu")
 
 [node name="Level_1" type="Node3D" parent="."]
+script = ExtResource("3_xpi41")
 
 [node name="Level 1 map" parent="Level_1" instance=ExtResource("2_ij12d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.242676, -0.0861857, 0.0343623)
@@ -104,47 +108,52 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0465, 0, 11.9643)
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 1.40032, 0)
 shape = SubResource("SphereShape3D_v4ypu")
 
-[node name="BuildTiles" type="Node3D" parent="."]
+[node name="BuildTiles" type="Node3D" parent="Level_1"]
 
-[node name="Area3D" type="Area3D" parent="BuildTiles"]
+[node name="Area3D" type="Area3D" parent="Level_1/BuildTiles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
 script = ExtResource("5_5j4ky")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildTiles/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level_1/BuildTiles/Area3D"]
 shape = SubResource("BoxShape3D_v4ypu")
 
-[node name="Area3D2" type="Area3D" parent="BuildTiles"]
+[node name="Area3D2" type="Area3D" parent="Level_1/BuildTiles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 1, 0)
+script = ExtResource("7_318wc")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildTiles/Area3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level_1/BuildTiles/Area3D2"]
 shape = SubResource("BoxShape3D_v4ypu")
 
-[node name="Area3D3" type="Area3D" parent="BuildTiles"]
+[node name="Area3D3" type="Area3D" parent="Level_1/BuildTiles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1, 8)
+script = ExtResource("7_318wc")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildTiles/Area3D3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level_1/BuildTiles/Area3D3"]
 shape = SubResource("BoxShape3D_v4ypu")
 
-[node name="Area3D4" type="Area3D" parent="BuildTiles"]
+[node name="Area3D4" type="Area3D" parent="Level_1/BuildTiles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 8)
+script = ExtResource("7_318wc")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildTiles/Area3D4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level_1/BuildTiles/Area3D4"]
 shape = SubResource("BoxShape3D_v4ypu")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="Level_1"]
 
-[node name="BuildMenu" type="Panel" parent="CanvasLayer"]
+[node name="BuildMenu" type="Panel" parent="Level_1/CanvasLayer" node_paths=PackedStringArray("camera")]
 visible = false
 offset_right = 269.0
 offset_bottom = 59.0
+script = ExtResource("6_mdnx3")
+camera = NodePath("../../../CameraRig/Pivot/Camera3D")
 
-[node name="Button" type="Button" parent="CanvasLayer/BuildMenu"]
+[node name="Button" type="Button" parent="Level_1/CanvasLayer/BuildMenu"]
 layout_mode = 0
 offset_right = 86.0
 offset_bottom = 58.0
 text = "Basic"
 
-[node name="Button2" type="Button" parent="CanvasLayer/BuildMenu"]
+[node name="Button2" type="Button" parent="Level_1/CanvasLayer/BuildMenu"]
 layout_mode = 0
 offset_left = 87.0
 offset_top = 2.0
@@ -152,7 +161,7 @@ offset_right = 174.0
 offset_bottom = 57.0
 text = "Slow"
 
-[node name="Button3" type="Button" parent="CanvasLayer/BuildMenu"]
+[node name="Button3" type="Button" parent="Level_1/CanvasLayer/BuildMenu"]
 layout_mode = 0
 offset_left = 176.0
 offset_right = 267.0
