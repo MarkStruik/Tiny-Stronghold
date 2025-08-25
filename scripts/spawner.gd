@@ -54,11 +54,13 @@ func start_next_wave() -> void:
 	current_wave += 1
 	
 	running = false
-	
-	
+
 	if current_wave == waves.size():
 		await get_tree().create_timer(2.0).timeout
-		if get_tree().get_nodes_in_group("Enemy").is_empty():
-			Game.on_win()
 	else:
 		$CanvasLayer/Button.visible = true
+
+func _process(delta):
+	if current_wave == waves.size():
+		if get_tree().get_nodes_in_group("Enemy").is_empty():
+			Game.on_win()

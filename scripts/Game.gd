@@ -49,7 +49,6 @@ func update_ui() -> void:
 		if spawner:
 			wave_label.text = "Wave " + str(spawner.current_wave + 1)
 
-
 func on_win() -> void:
 	_end_screen(true)
 
