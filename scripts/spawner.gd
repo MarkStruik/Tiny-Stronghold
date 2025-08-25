@@ -3,28 +3,11 @@ extends Node
 @export var enemy_scene := preload("res://scenes/enemies/Enemy.tscn")
 var spawning := false
  
-func start_demo_wave():
-	#$CanvasLayer/Button.visible = false
-	if spawning:
-		return 
-
-	spawning = true 
-	
-	for i in 10:
-		_spawn_enemy() 
-		await get_tree().create_timer(0.6).timeout 
-	
-	spawning = false
-
-func _spawn_enemy():
-	var e = enemy_scene.instantiate()
-	e.global_transform.origin = $"../Spawn".global_transform.origin
-	e.add_to_group("Enemy") 
-	get_tree().current_scene.add_child(e)
-	var ENEMY_PRESET = {
+var ENEMY_PRESET = {
 	"basic": {"hp": 10, "speed": 4.0, "reward": 5, "dmg": 1},
 	"fast": {"hp": 7, "speed": 7.0, "reward": 6, "dmg": 1},
 	"tank": {"hp": 18, "speed": 2.8, "reward": 8, "dmg": 2},
+	"boss": {"hp": 150, "speed": 1, "reward": 80, "dmg": 10},
 }
 
 var waves = [
@@ -34,6 +17,7 @@ var waves = [
 	{"seq": [{"t": "basic", "n": 8, "gap": 0.4}, {"t": "tank", "n": 4, "gap": 0.9}], "delay": 4},
 	{"seq": [{"t": "fast", "n": 10, "gap": 0.35}], "delay": 4},
 	{"seq": [{"t": "tank", "n": 6, "gap": 0.8}, {"t": "fast", "n": 8, "gap": 0.35}], "delay": 5},
+	{"seq": [{"t": "boss", "n": 1, "gap": 0.8}], "delay": 8},
 ]
 
 var current_wave := 0
@@ -55,8 +39,10 @@ func spawn_enemy(kind: String = "basic") -> void:
 func start_next_wave() -> void:
 	if running or current_wave >= waves.size():
 		return
-	
+		
+	$CanvasLayer/Button.visible = false
 	running = true
+	
 	var w = waves[current_wave]
 	
 	for part in w["seq"]:
@@ -66,9 +52,13 @@ func start_next_wave() -> void:
 	
 	await get_tree().create_timer(w["delay"]).timeout
 	current_wave += 1
+	
 	running = false
+	
 	
 	if current_wave == waves.size():
 		await get_tree().create_timer(2.0).timeout
 		if get_tree().get_nodes_in_group("Enemy").is_empty():
 			Game.on_win()
+	else:
+		$CanvasLayer/Button.visible = true

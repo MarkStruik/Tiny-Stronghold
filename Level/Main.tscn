@@ -78,7 +78,6 @@ progress = 30.2755
 
 [node name="Spawner" type="Node" parent="Level_1" groups=["Spawner"]]
 script = ExtResource("4_v4ypu")
-enemy_scene = null
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Level_1/Spawner"]
 
@@ -95,7 +94,7 @@ offset_bottom = -235.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 24
-text = "Start Demo Wave"
+text = "Start Wave"
 metadata/_edit_use_anchors_ = true
 
 [node name="Spawn" type="Marker3D" parent="Level_1"]
@@ -178,32 +177,58 @@ offset_bottom = 58.0
 text = "Splash"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="Money" type="Label" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Lives" type="Label" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Wave" type="Label" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+
+[node name="EndPanel" type="Panel" parent="CanvasLayer"]
 visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Money" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/EndPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -61.0
+offset_right = 74.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Lives" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Label" type="Label" parent="CanvasLayer/EndPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
 
-[node name="Wave" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Restart button" type="Button" parent="CanvasLayer/EndPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Restart"
 
-[node name="EndPanel" type="Panel" parent="CanvasLayer/Wave"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Restart button" type="Label" parent="CanvasLayer/Wave/EndPanel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
-[connection signal="pressed" from="Level_1/Spawner/CanvasLayer/Button" to="Level_1/Spawner" method="start_demo_wave"]
+[connection signal="pressed" from="Level_1/Spawner/CanvasLayer/Button" to="Level_1/Spawner" method="start_next_wave"]
 [connection signal="build_requested" from="Level_1/CanvasLayer/BuildMenu" to="Level_1/CanvasLayer/BuildMenu" method="_build"]
 [connection signal="pressed" from="Level_1/CanvasLayer/BuildMenu/Button" to="Level_1/CanvasLayer/BuildMenu" method="_on_Basic_pressed"]
 [connection signal="pressed" from="Level_1/CanvasLayer/BuildMenu/Button2" to="Level_1/CanvasLayer/BuildMenu" method="_on_Slow_pressed"]
 [connection signal="pressed" from="Level_1/CanvasLayer/BuildMenu/Button3" to="Level_1/CanvasLayer/BuildMenu" method="_on_Splash_pressed"]
+[connection signal="pressed" from="CanvasLayer/EndPanel/VBoxContainer/Restart button" to="." method="_on_game_restart"]

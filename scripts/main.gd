@@ -1,9 +1,17 @@
 # CompatTuning.gd
 extends Node
 
+@onready var money_label:= $CanvasLayer/HBoxContainer/Money
+@onready var lives_label:= $CanvasLayer/HBoxContainer/Lives
+@onready var wave_label:= $CanvasLayer/HBoxContainer/Wave
+@onready var endpanel:= $CanvasLayer/EndPanel
+
 func _ready() -> void:
 	#ONLY FOR DEMO
 	#$Spawner.start_demo_wave()
+	Game.bind_ui(money_label,lives_label,wave_label,endpanel)
+	
+	
 	
 	# Only run when using the Compatibility renderer or Web
 	if not (OS.has_feature("web") or RenderingServer.get_video_adapter_name().to_lower().find("compat") != -1):
@@ -43,3 +51,8 @@ func _walk_and_tune(n: Node, names: Array[String]) -> void:
 				if nl.find(key) != -1:
 					c.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 					break
+
+
+func _on_game_restart():
+	Game.restart()
+	get_tree().reload_current_scene()
