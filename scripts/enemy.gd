@@ -4,6 +4,12 @@ extends CharacterBody3D
 @export var speed := 3.0 
 @export var reward := 5
 @export var damage_to_base := 1 
+@export var type := "basic"
+
+@export var basic_skin :PackedScene
+@export var fast_skin :PackedScene
+@export var tank_skin :PackedScene
+@export var boss_skin :PackedScene
 
 var hp := 0 
 var path_follow: PathFollow3D 
@@ -14,6 +20,24 @@ func _ready():
 	var template: PathFollow3D = get_tree().get_first_node_in_group("PathTemplate")
 	path_follow = template.duplicate() 
 	template.get_parent().add_child(path_follow) 
+	
+	match type:
+		"basic":
+			var enemy = basic_skin.instantiate()
+			enemy.scale = Vector3(2,2,2)
+			$".".add_child(enemy)
+		"fast":
+			var enemy = fast_skin.instantiate()
+			enemy.scale = Vector3(1,1,1)
+			$".".add_child(enemy)
+		"tank":
+			var enemy = tank_skin.instantiate()
+			enemy.scale = Vector3(2.5,2.5,2.5)
+			$".".add_child(enemy)
+		"boss":
+			var enemy = boss_skin.instantiate()
+			enemy.scale = Vector3(3,3,3)
+			$".".add_child(enemy)
 
 func _physics_process(delta): 
 	path_follow.progress += speed * slow_factor * delta 

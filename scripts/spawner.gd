@@ -31,6 +31,7 @@ func spawn_enemy(kind: String = "basic") -> void:
 	e.speed = p["speed"]
 	e.reward = p["reward"]
 	e.damage_to_base = p["dmg"]
+	e.type = kind
 	e.global_transform.origin = $"../Spawn".global_transform.origin
 	e.add_to_group("Enemy")
 	get_tree().current_scene.add_child(e)
