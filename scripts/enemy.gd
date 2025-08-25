@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-@export var max_hp := 8 
-@export var speed := 4.0 
+@export var max_hp := 10 
+@export var speed := 3.0 
 @export var reward := 5
 @export var damage_to_base := 1 
 

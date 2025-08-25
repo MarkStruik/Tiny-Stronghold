@@ -78,6 +78,7 @@ progress = 30.2755
 
 [node name="Spawner" type="Node" parent="Level_1" groups=["Spawner"]]
 script = ExtResource("4_v4ypu")
+enemy_scene = null
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Level_1/Spawner"]
 
@@ -175,6 +176,31 @@ offset_left = 176.0
 offset_right = 267.0
 offset_bottom = 58.0
 text = "Splash"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Money" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Lives" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Wave" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="EndPanel" type="Panel" parent="CanvasLayer/Wave"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Restart button" type="Label" parent="CanvasLayer/Wave/EndPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
 
 [connection signal="pressed" from="Level_1/Spawner/CanvasLayer/Button" to="Level_1/Spawner" method="start_demo_wave"]
 [connection signal="build_requested" from="Level_1/CanvasLayer/BuildMenu" to="Level_1/CanvasLayer/BuildMenu" method="_build"]
