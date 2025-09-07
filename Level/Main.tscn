@@ -195,6 +195,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="EndPanel" type="Panel" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -229,9 +230,17 @@ text = "Restart"
 [node name="LevelManager" type="Node3D" parent="."]
 script = ExtResource("9_jpvar")
 
+[node name="Next_Level" type="Button" parent="LevelManager"]
+offset_left = 39.0
+offset_top = 135.0
+offset_right = 258.0
+offset_bottom = 213.0
+text = "Next Level"
+
 [connection signal="pressed" from="Level_1/Spawner/CanvasLayer/Button" to="Level_1/Spawner" method="start_next_wave"]
 [connection signal="build_requested" from="Level_1/CanvasLayer/BuildMenu" to="Level_1/CanvasLayer/BuildMenu" method="_build"]
 [connection signal="pressed" from="Level_1/CanvasLayer/BuildMenu/Button" to="Level_1/CanvasLayer/BuildMenu" method="_on_Basic_pressed"]
 [connection signal="pressed" from="Level_1/CanvasLayer/BuildMenu/Button2" to="Level_1/CanvasLayer/BuildMenu" method="_on_Slow_pressed"]
 [connection signal="pressed" from="Level_1/CanvasLayer/BuildMenu/Button3" to="Level_1/CanvasLayer/BuildMenu" method="_on_Splash_pressed"]
 [connection signal="pressed" from="CanvasLayer/EndPanel/VBoxContainer/Restart button" to="." method="_on_game_restart"]
+[connection signal="pressed" from="LevelManager/Next_Level" to="LevelManager" method="_on_next_level_pressed"]
