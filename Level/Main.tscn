@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bug56bo1gaxcm"]
+[gd_scene load_steps=16 format=3 uid="uid://bug56bo1gaxcm"]
 
 [ext_resource type="Script" uid="uid://dc0atc0amvkf5" path="res://scripts/main.gd" id="1_v4ypu"]
 [ext_resource type="PackedScene" uid="uid://b3w1i65bayb68" path="res://scenes/levels/Level1.tscn" id="2_ij12d"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://csnng6io68uui" path="res://scripts/area_3d.gd" id="5_5j4ky"]
 [ext_resource type="Script" uid="uid://cllcov04wp5be" path="res://scripts/BuildMenu.gd" id="6_mdnx3"]
 [ext_resource type="Script" uid="uid://bn3vc2c3011ys" path="res://scripts/BuildTile.gd" id="7_318wc"]
+[ext_resource type="Script" uid="uid://dn7ay4xht4w2f" path="res://scripts/level_manager.gd" id="9_jpvar"]
 
 [sub_resource type="Environment" id="Environment_ij12d"]
 background_energy_multiplier = 1.75
@@ -194,7 +195,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="EndPanel" type="Panel" parent="CanvasLayer"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -225,6 +225,9 @@ theme_override_font_sizes/font_size = 40
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Restart"
+
+[node name="LevelManager" type="Node3D" parent="."]
+script = ExtResource("9_jpvar")
 
 [connection signal="pressed" from="Level_1/Spawner/CanvasLayer/Button" to="Level_1/Spawner" method="start_next_wave"]
 [connection signal="build_requested" from="Level_1/CanvasLayer/BuildMenu" to="Level_1/CanvasLayer/BuildMenu" method="_build"]
