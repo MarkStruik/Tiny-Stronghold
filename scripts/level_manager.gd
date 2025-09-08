@@ -1,8 +1,8 @@
 extends Node
 
 var levels := [
-	"res://Levels/Level1.tscn",
-	"res://Levels/Level2.tscn"
+	"res://Level/Main.tscn",
+	"res://Level/level_2.tscn"
 	# add more levels here...
 ]
 
